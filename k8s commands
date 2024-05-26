@@ -1,0 +1,79 @@
+=======================MINIKUB
+minikub start
+minikub status
+minikub stop
+minikub delete // remove tudos os clusters, limpando o kubernetes
+=====================================loadbalance expose
+kubectl expose deployment nome_do_deployment --type=LoadBalancer --port=80 --target-port=80 --name=nome_do_servico
+kubectl expose deployment app-html-deployment --type=LoadBalancer --port=80 --target-port=80 --name=app-html-service
+kubectl expose deployment apache-deployment --type=LoadBalancer --port=80 --target-port=80 --name=app-html-service
+
+kubectl get services
+/ NAME               TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+ app-html-service   LoadBalancer   10.110.227.94   <pending>     80:31185/TCP   46s /
+
+minikube service --url app-html-service
+/http://192.168.49.2:31185/
+====================================NODES
+kubectl get nodes
+kubectl describe node nome_do_no
+kubectl get nome_do_recurso
+kubectl get all
+kubectl describe nome_do_recurso nome_do_recurso
+kubectl logs nome_do_pod -c nome_do_container
+=======================KUBERNETS
+kubectl run nginx --image nginx// cria um pode chamado nginx dentro do cluster
+kubectl get pods
+kubectl get pods -o wide
+kubectl describe pod nginx
+kubectl -h
+kubectl create -f nome-do-arquivo.yaml
+kubectl apply -f nome-do-arquivo.yaml // o commando apply tbm serve para atualizar uma aplicação que ja esta publicada
+PARA APPLY/CREATE/RUN E OUTROS AUTULIZAÇÕES DE CONFIGURAÇÕES USE NO FINAL --save-config
+USE TBM A FLAG --record
+
+minikube ssh ja acessa maquina virtual
+----***************************************************************************
+kubectl set image deployment frontend-dp frontend-container=nginx:1.18 --record
+----***************************************************************************
+
+kubectl rollout
+kubectl rollout history
+
+******************************************************************************
+kubectl rollout history deployment/frontend-dp
+------------------------------------------------------------------------------
+kubectl rollout undo deployment/frontend-dp --to-revision=1
+******************************************************************************
+kubectl scale deployment/frontend-dp --replicas=3
+******************************************************************************
+
+kubectl get all//devolve todas os containers, pods, replicasets, deploiments...
+
+replicaset
+deployment
+
+kubectl get replicationcontroller
+kubectl get replicaset
+
+kubectl replace -f file.yaml//atualiza as configurações sem derrubar a aplicação
+
+kubectl scale --replicas=6 -f file.yaml //atualiza a quantidade de pods sem alterar os yaml
+kubectl scale --replicas=8 repllicaset application-rs /// muda usando a labem de identificação da app no metada
+
+kubeclt rollout status deployment/nome-do-deployment
+kubeclt rollout
+
+EXPOSE
+kubectl expose deployment frontend-dp --type=LoadeBalancer --port=80 --name=frontend-svc
+kubeclt get service
+minikube service --url frontend-svc
+
+DOCKERIMAGE
+docker build -t pedroorf123/my-app:1.0
+
+..organização:
+--cluster>pod>container(s)
+
+
+
