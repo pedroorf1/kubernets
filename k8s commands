@@ -68,9 +68,13 @@ EXPOSE
 kubectl expose deployment frontend-dp --type=LoadeBalancer --port=80 --name=frontend-svc
 kubeclt get service
 minikube service --url frontend-svc
+kubeclt describe service frontend-svc
 
 DOCKERIMAGE
 docker build -t pedroorf123/my-app:1.0
+
+LIBERAR FIREWALL NA CLOUD
+gcloud compute firewall-rules create my-app-frontend-svc --allow=tcp:80
 
 ..organização:
 --cluster>pod>container(s)
