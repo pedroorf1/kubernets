@@ -9,3 +9,6 @@
 
 kubectl expose deployment app-html-deployment --type=LoadBalancer --name=app-html --port=80
 kubectl expose deployment app-phpadmin-deployment --type=LoadBalancer --name=app-phpadmin --port=80
+
+ACESSAR UM POD PELO TERMINAL
+kubectl exec --tty --stdin <pod-name> /bin/bash
