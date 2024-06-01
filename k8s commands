@@ -76,6 +76,9 @@ docker build -t pedroorf123/my-app:1.0
 LIBERAR FIREWALL NA CLOUD
 gcloud compute firewall-rules create my-app-frontend-svc --allow=tcp:80
 
+REDIRECIONAMENTO DE PORTA DE PODE QUANDO NÃO SE TEM UM SERVIÇO
+kubeclt port-forward pod/frontend-dp 8080:80
+
 ..organização:
 --cluster>pod>container(s)
 
